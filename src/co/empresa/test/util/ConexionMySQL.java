@@ -7,9 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class Conexion {
+public class ConexionMySQL {
 	private Connection con = null;
-	private static Conexion db;  // para patron singleton
+	private static ConexionMySQL db;  // para patron singleton
 	private PreparedStatement  preparedStatement;
 	
 	private static final String url = "jdbc:mysql://localhost:3306/"; // tipodeconexion:servicio://servidor:puerto
@@ -19,7 +19,7 @@ public class Conexion {
 	private static final String userName = "root";
 	private static final String password = "";
 	
-	public Conexion() {
+	public ConexionMySQL() {
 		try {
 			Class.forName(driver).newInstance();
 			con = (Connection)DriverManager.getConnection(url+dbName,userName,password);
@@ -40,9 +40,9 @@ public class Conexion {
 	}
 	
 	//Patron Silgleton , una sola instancia 
-	public static Conexion getConexion() {
+	public static ConexionMySQL getConexion() {
 		if(db == null){
-			db = new Conexion();
+			db = new ConexionMySQL();
 		}
 		return db;
 	}
